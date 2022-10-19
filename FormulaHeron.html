@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fórmula de heron</title>
+    <style>
+      h2{
+            font: normal 11pt Arial;
+            color: black;
+      }
+      h1{
+           font: normal 21pt Arial;
+           color: rgb(0, 0, 0);
+      }
+
+    </style>
+</head>
+<body>
+
+    <h1>Fórmula de Heron</h1>
+    <h2>Área do triângulo em função dos lados.</h2>
+    <p>Abaixo coloque as medidas dos três lados do triângulo e será dado o valor da área no unidade de medida que foi digitado os laods</p>
+    
+   
+    <div>1° lado: <input type="number" id="n1"></div>
+    <div>2° lado: <input type="number" id="n2"></div>
+    <div>3° lado: <input type="number" id="n3"></div>
+
+    <pre></pre>
+
+    <div><input type="button" value="Calcular" onclick="calcular()"><button onclick="limparDados()">Limpar</button></div>
+
+    <pre></pre> 
+
+    <div id="soma"></div>
+
+    <pre></pre>
+
+    </div>
+
+     <Script>
+        
+        function calcular(){
+            var n1 = document.getElementById(`n1`)
+            var n2 = document.getElementById(`n2`)
+            var n3 = document.getElementById(`n3`)//em vez de 'querySelector', podemos usar também o 'getElementById'
+            
+            var soma = document.querySelector(`div#soma`)
+            var r = ((Number(n1.value) + Number(n2.value) + Number(n3.value))/2)
+            var resultado = Math.sqrt(r*(r-n1.value)*(r-n2.value)*(r-n3.value))
+            
+          if(Number(n1.value) > Number(n2.value) + Number(n3.value)){
+              soma.innerHTML = `<div><strong>Condição de existência de um triângulo:</strong> "Dados três segmentos de reta distintos, se a medida de um deles é sempre maior que a medida da soma dos outros dois, então eles não podem formar um triângulo."<br/> A medida do primeiro lado que você digitou, o ${n1.value}, é maior que a soma do segundo lado com o terceiro: ${n2.value} + ${n3.value} = ${Number(n2.value) + Number(n3.value)}. E ${Number(n2.value) + Number(n3.value)} < ${n1.value}. Logo, não é possível formar um triângulo com estas três medidas.<div/>`
+               
+          } else if(Number(n2.value) > Number(n1.value) + Number(n3.value)){
+              soma.innerHTML = `<div><strong>Condição de existência de um triângulo:</strong> "Dados três segmentos de reta distintos, se a medida de um deles é sempre maior que a medida da soma dos outros dois, então eles não podem formar um triângulo."<br/> A medida do segundo lado que você digitou, o ${n2.value}, é maior que a soma do primeiro lado com o terceiro: ${n1.value} + ${n3.value} = ${Number(n1.value) + Number(n3.value)}. E ${Number(n1.value) + Number(n3.value)} < ${n2.value}. Logo, não é possível formar um triângulo com estas três medidas.<div/>`
+      
+          } else if(Number(n3.value) > Number(n1.value) + Number(n2.value)){
+              soma.innerHTML = `<div><strong>Condição de existência de um triângulo:</strong> "Dados três segmentos de reta distintos, se a medida de um deles é sempre maior que a medida da soma dos outros dois, então eles não podem formar um triângulo."<br/> A medida do terceiro lado que você digitou, o ${n3.value}, é maior que a soma do primeiro lado com o segundo: ${n1.value} + ${n2.value} = ${Number(n1.value) + Number(n2.value)}. E ${Number(n1.value) + Number(n2.value)} < ${n3.value}. Logo, não é possível formar um triângulo com estas três medidas.<div/>`                 
+             
+          } else {
+            soma.innerHTML = `<div>A área do triângulo é: <strong>${resultado}</strong></div>`
+          }
+              
+         }
+         function limparDados(){
+            soma.innerHTML = ""
+         }
+
+//<strong></strong> deixa a palavra em negrito
+     </Script>
+</body>
+</html>
